@@ -151,7 +151,7 @@ vim.o.splitbelow = true
 --   and `:help lua-options-guide`
 vim.o.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-
+vim.opt.conceallevel = 1
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
 
@@ -968,7 +968,7 @@ require('lazy').setup({
     'epwalsh/obsidian.nvim',
     version = '*', -- recommended, use latest release instead of latest commit
     lazy = true,
-    -- ft = "markdown",
+    ft = 'markdown',
     -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
     event = {
       -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
@@ -1041,6 +1041,10 @@ require('lazy').setup({
     },
   },
 })
+
+vim.api.nvim_create_user_command('NvimInit', function(opts)
+  vim.cmd 'tabnew /home/wildor/.config/nvim/'
+end, { nargs = 0 })
 
 vim.cmd 'Neotree'
 -- The line beneath this is called `modeline`. See `:help modeline`
